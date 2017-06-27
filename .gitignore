@@ -58,5 +58,4 @@ typings/
 .env
 
 # angular files
-notes/*
 dist/*
