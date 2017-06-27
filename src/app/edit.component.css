@@ -1,0 +1,38 @@
+.editArea{
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  margin: 5px;
+  justify-content: center;
+}
+
+.editTextArea{
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  resize: none;
+  border: 1px solid;
+}
+
+button {
+  background: #03f27a;
+  background-image: -webkit-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -moz-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -ms-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -o-linear-gradient(top, #03f27a, #de0b39);
+  background-image: linear-gradient(to bottom, #03f27a, #de0b39);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #000000 1px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #9c3cfc;
+  text-decoration: none;
+}
