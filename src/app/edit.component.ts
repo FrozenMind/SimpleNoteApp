@@ -17,32 +17,33 @@ export class EditComponent {
   constructor(private http: Http) {
   }
 
+  //tell server to save the file
   onSaveClick() {
     console.log("Save clicked.");
     this.saved = true;
     let body = JSON.stringify({ data: this.noteText });
     console.log(body);
-    return this.http
+    this.http
       .post(this.url, body, { headers: this.headers })
       .toPromise()
-      .then(res => res.json().data as string)
+      .then(res => res.json().data)
       .catch(this.handleError);
   }
-  getSth() {
-    return this.http.get('http://localhost:3000/api/users')
-      .toPromise()
-      .then(response => console.log(response.json().data))
-      .catch(this.handleError);
 
+  //clear textarea
+  onClearClick() {
+    console.log("Clear clicked.");
+    this.noteText = "";
+  }
+
+  //tell server to delete the file
+  onDeleteClick() {
+    console.log("Deleted clicked.");
+    this.noteText = "";
   }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
-  }
-
-
-  onDeleteClick() {
-    console.log("Deleted clicked.");
   }
 }

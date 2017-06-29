@@ -79,22 +79,23 @@ server.get('/api/users', function(req, res) {
 server.post('/api/writeFile', (req, res) => {
   //write to file using fs
   console.log(req.body)
-  fs.writeFile(__dirname + "/../notes/test.note", req.body.data, function(err) {
-    if (err) {
-      return console.log("Write file ERR: " + err);
-    }
-    console.log("The file was saved!");
-  })
+  var d = new Date()
+  var weirdDate = d.getDate() + "" + (d.getMonth() + 1) + "" + d.getFullYear() + "_" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
+  fs.writeFile(__dirname + "/../notes/" + weirdDate, req.body.data,
+    function(err) {
+      if (err) {
+        res.send({
+          successfull: false
+        })
+        return console.log("Write file ERR: " + err)
+      }
+      console.log("The file was saved!")
+      res.send({
+        successfull: true
+      })
+    })
 })
 
-
-server.get('/api/users', function(req, res) {
-  res.send("everything worked fine");
-});
-
-server.post('/api/po', function(req, res) {
-  res.send("post worked");
-});
 
 //start HTTP Server
 //http.listen(3000, function() {
