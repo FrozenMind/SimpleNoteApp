@@ -14,6 +14,17 @@
   background-color: #cccccc;
 }
 
+label {
+  display: inline-block;
+  width: auto;
+}
+
+#title {
+  width: inherit;
+  background-color: #cccccc;
+  margin-bottom: 5px;
+}
+
 button {
   background: #03f27a;
   background-image: -webkit-linear-gradient(top, #03f27a, #de0b39);

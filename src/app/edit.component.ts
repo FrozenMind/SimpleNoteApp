@@ -14,6 +14,8 @@ export class EditComponent {
   url: string = 'http://localhost:3000/api/writeFile';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   noteText: string;
+  noteTitle: string;
+
   constructor(private http: Http) {
   }
 
@@ -21,13 +23,18 @@ export class EditComponent {
   onSaveClick() {
     console.log("Save clicked.");
     this.saved = true;
-    let body = JSON.stringify({ data: this.noteText });
-    console.log(body);
-    this.http
-      .post(this.url, body, { headers: this.headers })
-      .toPromise()
-      .then(res => res.json().data)
-      .catch(this.handleError);
+    if (this.noteTitle.trim() != "" && this.noteText.trim() != "") {
+      let body = JSON.stringify({ title: this.noteTitle, data: this.noteText });
+      console.log("Request send to save: " + body);
+      this.http
+        .post(this.url, body, { headers: this.headers })
+        .toPromise()
+        .then(res => res.json().data)
+        .catch(this.handleError);
+    } else {
+      console.log("Pls Choose a Title and a Content")
+    }
+
   }
 
   //clear textarea

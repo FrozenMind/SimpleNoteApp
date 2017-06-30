@@ -4,5 +4,7 @@
   <button (click)="onDeleteClick()">Delete</button>
 </div>
 <div class="editArea">
+    <label>Title</label>
+    <input type="text" id="title" [(ngModel)]="noteTitle" placeholder="What's your note about?" />
   <textarea class="editTextArea" [(ngModel)]="noteText"></textarea>
 </div>
