@@ -81,6 +81,8 @@ server.post('/api/writeFile', (req, res) => {
   console.log(req.body)
   var d = new Date()
   var weirdDate = d.getDate() + "" + (d.getMonth() + 1) + "" + d.getFullYear() + "_" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
+  //add id to note
+  req.body.id = Math.random() * 10000
   fs.writeFile(__dirname + "/../notes/" + req.body.title.replace(' ', '') + "_" + weirdDate + ".nt", JSON.stringify(req.body),
     function(err) {
       if (err) {
@@ -97,14 +99,16 @@ server.post('/api/writeFile', (req, res) => {
 })
 
 //http get all notes request
-server.get('/api/getNotes', (req, res) => {
+server.get('/api/getNotes/:id?', (req, res) => {
+  var requiredId = req.param('id') || -100 //-100 --> getAllNotes
+  console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
+  if (requiredId == -1) return //-1 is new note
   var data = []
   console.log("/api/getNotes")
   var url = __dirname + "/../notes"
   //read all filenames
   fs.readdir(url, function(err, files) {
     if (err) return;
-    var idCounter = 0
     //files is an array with all filenames
     files.forEach(function(file) {
       //ignore .gitignore --> this file is necessary for now
@@ -112,12 +116,13 @@ server.get('/api/getNotes', (req, res) => {
       if (file != ".gitignore") {
         var fileContent = JSON.parse(fs.readFileSync(url + "/" + file, 'utf8'))
         //send every file
-        data.push({
-          id: idCounter,
-          title: fileContent.title,
-          content: fileContent.data
-        })
-        idCounter++
+        if (requiredId == -100 || requiredId == fileContent.id) {
+          data.push({
+            id: fileContent.id,
+            title: fileContent.title,
+            content: fileContent.data
+          })
+        }
       }
     })
     res.send(JSON.stringify(data))
