@@ -28,6 +28,6 @@ export class OverviewComponent implements OnInit {
   }
 
   newNote(): void {
-    this.router.navigate(['/edit', 0])
+    this.router.navigate(['/edit', -1])
   }
 }
