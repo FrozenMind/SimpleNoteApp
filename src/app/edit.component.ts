@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router }            from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -16,7 +17,9 @@ export class EditComponent {
   noteText: string;
   noteTitle: string;
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http,
+    private router: Router) {
   }
 
   //tell server to save the file
@@ -47,6 +50,10 @@ export class EditComponent {
   onDeleteClick() {
     console.log("Deleted clicked.");
     this.noteText = "";
+  }
+
+  onDashboardClick() {
+    this.router.navigate(['/overview'])
   }
 
   private handleError(error: any): Promise<any> {

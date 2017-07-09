@@ -98,29 +98,30 @@ server.post('/api/writeFile', (req, res) => {
 
 //http get all notes request
 server.get('/api/getNotes', (req, res) => {
+  var data = []
   console.log("/api/getNotes")
   var url = __dirname + "/../notes"
   //read all filenames
   fs.readdir(url, function(err, files) {
     if (err) return;
+    var idCounter = 0
     //files is an array with all filenames
     files.forEach(function(file) {
-      fs.readFile(url + "/" + file, 'utf8', function(err, data) {
-        if (err) {
-          return console.log(err);
-        }
+      //ignore .gitignore --> this file is necessary for now
+      //TODO: on app open check if notes folder exist, otherwise create it, so gitignore is not necessary
+      if (file != ".gitignore") {
+        var fileContent = JSON.parse(fs.readFileSync(url + "/" + file, 'utf8'))
         //send every file
-        //res.send(JSON.stringify({
-        //title: file,
-        //content: data
-        //}))
-      })
+        data.push({
+          id: idCounter,
+          title: fileContent.title,
+          content: fileContent.data
+        })
+        idCounter++
+      }
     })
+    res.send(JSON.stringify(data))
   })
-  res.send(JSON.stringify([{
-    title: "Test",
-    content: "con"
-  }]))
 })
 
 
