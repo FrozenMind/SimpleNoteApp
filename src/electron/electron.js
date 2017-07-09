@@ -20,7 +20,7 @@ function createWindow() {
   win.loadURL(`file://${__dirname}/index.html`)
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -63,6 +63,8 @@ var cors = require('cors')
 var fs = require('fs')
 var bodyParser = require('body-parser')
 
+var notes = [];
+
 server.use(bodyParser.json()); // to support JSON-encoded bodies
 server.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
@@ -80,10 +82,14 @@ server.post('/api/writeFile', (req, res) => {
   //write to file using fs
   console.log(req.body)
   var d = new Date()
-  var weirdDate = d.getDate() + "" + (d.getMonth() + 1) + "" + d.getFullYear() + "_" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
-  //add id to note
-  req.body.id = Math.random() * 10000
-  fs.writeFile(__dirname + "/../notes/" + req.body.title.replace(' ', '') + "_" + weirdDate + ".nt", JSON.stringify(req.body),
+  var fullDate = d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear() + "_" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+  var newNote = {
+    id: notes.length,
+    title: req.body.title,
+    content: req.body.content
+  }
+  notes.push(newNote)
+  fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
     function(err) {
       if (err) {
         res.send({
@@ -100,33 +106,20 @@ server.post('/api/writeFile', (req, res) => {
 
 //http get all notes request
 server.get('/api/getNotes/:id?', (req, res) => {
+  console.log("/api/getNotes")
   var requiredId = req.param('id') || -100 //-100 --> getAllNotes
   console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
   if (requiredId == -1) return //-1 is new note
-  var data = []
-  console.log("/api/getNotes")
-  var url = __dirname + "/../notes"
-  //read all filenames
-  fs.readdir(url, function(err, files) {
-    if (err) return;
-    //files is an array with all filenames
-    files.forEach(function(file) {
-      //ignore .gitignore --> this file is necessary for now
-      //TODO: on app open check if notes folder exist, otherwise create it, so gitignore is not necessary
-      if (file != ".gitignore") {
-        var fileContent = JSON.parse(fs.readFileSync(url + "/" + file, 'utf8'))
-        //send every file
-        if (requiredId == -100 || requiredId == fileContent.id) {
-          data.push({
-            id: fileContent.id,
-            title: fileContent.title,
-            content: fileContent.data
-          })
-        }
-      }
-    })
-    res.send(JSON.stringify(data))
-  })
+  var url = __dirname + "/../notes.json"
+  notes = JSON.parse(fs.readFileSync(url, 'utf8'))
+  if (requiredId == -100) {
+    res.send(JSON.stringify(notes))
+  } else {
+    for (i = 0; i < notes.length; i++) {
+      if (notes[i].id == requiredId)
+        res.send(JSON.stringify(notes[i]))
+    }
+  }
 })
 
 

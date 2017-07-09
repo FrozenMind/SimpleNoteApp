@@ -31,7 +31,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.mainService.getNote(+params.get('id')))
-      .subscribe(n => this.note = n[0]);
+      .subscribe(n => this.note = n);
   }
 
   //tell server to save the file
@@ -39,7 +39,7 @@ export class EditComponent implements OnInit {
     console.log("Save clicked.");
     this.saved = true;
     if (this.note.title.trim() != "" && this.note.content.trim() != "") {
-      let body = JSON.stringify({ id: this.note.id, title: this.note.title, data: this.note.content });
+      let body = JSON.stringify({ id: this.note.id, title: this.note.title, content: this.note.content });
       console.log("Request send to save: " + body);
       this.http
         .post(this.url, body, { headers: this.headers })

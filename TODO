@@ -1,4 +1,1 @@
-edit: add button to toggle between show and edit
-
-overview: add clickListener for note and display it
-
+server/edit: add method to update an existing note
