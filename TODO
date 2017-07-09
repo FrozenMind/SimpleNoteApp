@@ -1,8 +1,4 @@
 edit: add button to toggle between show and edit
-edit: add "go back to home" button
 
-overview: add button "add new note"
 overview: add clickListener for note and display it
-
-server: fit getNotes so it returns all notes
 

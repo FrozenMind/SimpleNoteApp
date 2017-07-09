@@ -2,3 +2,27 @@ body{
   background-color: #000000;
   color: #cccccc;
 }
+
+button {
+  background: #03f27a;
+  background-image: -webkit-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -moz-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -ms-linear-gradient(top, #03f27a, #de0b39);
+  background-image: -o-linear-gradient(top, #03f27a, #de0b39);
+  background-image: linear-gradient(to bottom, #03f27a, #de0b39);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #000000 1px;
+  text-decoration: none;
+  margin-left: 2%;
+}
+
+button:hover {
+  background: #9c3cfc;
+  text-decoration: none;
+}

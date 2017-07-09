@@ -1,5 +1,6 @@
 <div>
   <h1>{{title}}</h1>
+  <button (click)="newNote()">New Note</button>
 </div>
 <div>
   <div class="note" *ngFor="let note of notes" (click)="gotoEdit(note)">

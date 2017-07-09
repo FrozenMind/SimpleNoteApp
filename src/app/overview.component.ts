@@ -26,4 +26,8 @@ export class OverviewComponent implements OnInit {
   gotoEdit(note): void {
     this.router.navigate(['/edit', note.id])
   }
+
+  newNote(): void {
+    this.router.navigate(['/edit', 0])
+  }
 }
