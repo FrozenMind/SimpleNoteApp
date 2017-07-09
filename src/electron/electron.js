@@ -81,7 +81,7 @@ server.post('/api/writeFile', (req, res) => {
   console.log(req.body)
   var d = new Date()
   var weirdDate = d.getDate() + "" + (d.getMonth() + 1) + "" + d.getFullYear() + "_" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
-  fs.writeFile(__dirname + "/../notes/" + req.body.title.trim() + "_" + weirdDate + ".nt", JSON.stringify(req.body),
+  fs.writeFile(__dirname + "/../notes/" + req.body.title.replace(' ', '') + "_" + weirdDate + ".nt", JSON.stringify(req.body),
     function(err) {
       if (err) {
         res.send({
