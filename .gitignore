@@ -59,3 +59,4 @@ typings/
 
 # angular files
 dist/*
+notes.json
