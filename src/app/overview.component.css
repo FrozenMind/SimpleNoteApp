@@ -1,3 +1,22 @@
 body{
   color: #ffffff;
 }
+
+.note {
+  position: relative;
+  float: left;
+  max-width: 40%;
+  max-height: 20%;
+  margin: 1%;
+  padding: 1%;
+  border: 2px solid #bbbbbb;
+  cursor: pointer;
+}
+
+.noteTitle {
+  font-weight: bold;
+}
+
+.noteContent {
+
+}
