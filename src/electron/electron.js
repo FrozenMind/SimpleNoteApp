@@ -96,6 +96,33 @@ server.post('/api/writeFile', (req, res) => {
     })
 })
 
+//http get all notes request
+server.get('/api/getNotes', (req, res) => {
+  console.log("/api/getNotes")
+  var url = __dirname + "/../notes"
+  //read all filenames
+  fs.readdir(url, function(err, files) {
+    if (err) return;
+    //files is an array with all filenames
+    files.forEach(function(file) {
+      fs.readFile(url + "/" + file, 'utf8', function(err, data) {
+        if (err) {
+          return console.log(err);
+        }
+        //send every file
+        //res.send(JSON.stringify({
+        //title: file,
+        //content: data
+        //}))
+      })
+    })
+  })
+  res.send(JSON.stringify([{
+    title: "Test",
+    content: "con"
+  }]))
+})
+
 
 //start HTTP Server
 //http.listen(3000, function() {
