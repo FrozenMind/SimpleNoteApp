@@ -78,17 +78,28 @@ server.get('/api/users', function(req, res) {
   });
 });
 //http write to file request
-server.post('/api/writeFile', (req, res) => {
+server.post('/api/saveNote', (req, res) => {
   //write to file using fs
   console.log(req.body)
   var d = new Date()
   var fullDate = d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear() + "_" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
-  var newNote = {
-    id: notes.length,
-    title: req.body.title,
-    content: req.body.content
+  //TODO: check if file exists, than update, otherwise create new
+  var newNote
+  if (req.body.id == -1) { //-1 = new note
+    newNote = {
+      id: notes.length,
+      title: req.body.title,
+      content: req.body.content
+    }
+    notes.push(newNote)
+  } else {
+    for (i = 0; i < notes.length; i++) {
+      if (notes[i].id == req.body.id) {
+        notes[i].title = req.body.title
+        notes[i].content = req.body.content
+      }
+    }
   }
-  notes.push(newNote)
   fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
     function(err) {
       if (err) {
@@ -122,6 +133,27 @@ server.get('/api/getNotes/:id?', (req, res) => {
   }
 })
 
+//delete one note
+server.delete('/api/deleteNote/:id', function(req, res) {
+  var requiredId = req.param('id')
+  for (i = notes.length - 1; i >= 0; i--) {
+    if (notes[i].id == requiredId)
+      notes.splice(i, 1)
+  }
+  fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
+    function(err) {
+      if (err) {
+        res.send({
+          successfull: false
+        })
+        return console.log("Note delete ERR: " + err)
+      }
+      console.log("The note was deleted!")
+      res.send({
+        successfull: true
+      })
+    })
+})
 
 //start HTTP Server
 //http.listen(3000, function() {

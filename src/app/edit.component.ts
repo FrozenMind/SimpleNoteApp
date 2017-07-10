@@ -16,7 +16,7 @@ import { Note } from './notes';
 
 export class EditComponent implements OnInit {
   saved = false;  //used to follow if theres an unsaved change
-  url: string = 'http://localhost:3000/api/writeFile';
+  url: string = 'http://localhost:3000/api/saveNote';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   note: Note;
 
@@ -39,7 +39,7 @@ export class EditComponent implements OnInit {
     console.log("Save clicked.");
     this.saved = true;
     if (this.note.title.trim() != "" && this.note.content.trim() != "") {
-      let body = JSON.stringify({ id: this.note.id, title: this.note.title, content: this.note.content });
+      let body = JSON.stringify({ id: this.note.id || -1, title: this.note.title, content: this.note.content });
       console.log("Request send to save: " + body);
       this.http
         .post(this.url, body, { headers: this.headers })
@@ -49,7 +49,6 @@ export class EditComponent implements OnInit {
     } else {
       console.log("Pls Choose a Title and a Content")
     }
-
   }
 
   //clear textarea
@@ -61,7 +60,13 @@ export class EditComponent implements OnInit {
   //tell server to delete the file
   onDeleteClick() {
     console.log("Deleted clicked.");
+    let delUrl = 'http://localhost:3000/api/deleteNote/' + this.note.id;
+    this.http.delete(delUrl, { headers: this.headers })
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
     this.note.content = "";
+    this.note.title = "";
   }
 
   onDashboardClick() {
