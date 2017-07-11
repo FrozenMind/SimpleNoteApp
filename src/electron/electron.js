@@ -100,6 +100,10 @@ server.post('/api/saveNote', (req, res) => {
       }
     }
   }
+  //create new ids, so no numbers are duplicated or lost
+  for (i = 0; i < notes.length; i++) {
+    notes[i].id = i
+  }
   fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
     function(err) {
       if (err) {
@@ -118,7 +122,7 @@ server.post('/api/saveNote', (req, res) => {
 //http get all notes request
 server.get('/api/getNotes/:id?', (req, res) => {
   console.log("/api/getNotes")
-  var requiredId = req.param('id') || -100 //-100 --> getAllNotes
+  var requiredId = req.params.id || -100 //-100 --> getAllNotes
   console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
   if (requiredId == -1) return //-1 is new note
   var url = __dirname + "/../notes.json"
@@ -127,8 +131,10 @@ server.get('/api/getNotes/:id?', (req, res) => {
     res.send(JSON.stringify(notes))
   } else {
     for (i = 0; i < notes.length; i++) {
-      if (notes[i].id == requiredId)
+      if (notes[i].id == requiredId) {
         res.send(JSON.stringify(notes[i]))
+        return;
+      }
     }
   }
 })
