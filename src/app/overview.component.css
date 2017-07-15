@@ -1,18 +1,35 @@
+.noteHolder{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .note {
   position: relative;
   float: left;
-  max-width: 40%;
-  max-height: 20%;
+  height: 20%;
+  width: 20%;
   margin: 1%;
   padding: 1%;
-  border: 2px solid #bbbbbb;
+  border: 6px outset #cd5700;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #efefc8;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.note:hover{
+  transform: scale(1.1);
 }
 
 .noteTitle {
   font-weight: bold;
+  color: #000000;
+  font-size: 100%;
 }
 
 .noteContent {
-
+  color: #696969;
+  font-size: 80%;
 }

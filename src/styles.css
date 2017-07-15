@@ -1,6 +1,10 @@
+html,
 body{
+  height: 100%;
+  width: 100%;
   background-color: #000000;
   color: #cccccc;
+  overflow: hidden;
 }
 
 button {
@@ -19,7 +23,7 @@ button {
   padding: 10px 20px 10px 20px;
   border: solid #000000 1px;
   text-decoration: none;
-  margin-left: 2%;
+  margin: 1%;
 }
 
 button:hover {
