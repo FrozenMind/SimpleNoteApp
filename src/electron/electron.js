@@ -141,7 +141,7 @@ server.get('/api/getNotes/:id?', (req, res) => {
 
 //delete one note
 server.delete('/api/deleteNote/:id', function(req, res) {
-  var requiredId = req.param('id')
+  var requiredId = req.params.id
   for (i = notes.length - 1; i >= 0; i--) {
     if (notes[i].id == requiredId)
       notes.splice(i, 1)

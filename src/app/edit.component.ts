@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/switchMap';
@@ -24,8 +25,14 @@ export class EditComponent implements OnInit {
     private mainService: MainService,
     private http: Http,
     private router: Router,
-    private route: ActivatedRoute
-  ) { this.note = new Note() }
+    private route: ActivatedRoute,
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+    this.note = new Note();
+    this.note.title = "";
+    this.note.content = "";
+  }
 
   //on init get Param
   ngOnInit(): void {
@@ -44,10 +51,10 @@ export class EditComponent implements OnInit {
       this.http
         .post(this.url, body, { headers: this.headers })
         .toPromise()
-        .then(res => res.json().data)
+        .then(res => res.json().successfull ? this.toastr.success('Note saved') : this.toastr.error('Ups!', 'Something went wrong by saving your note. Sorry'))
         .catch(this.handleError);
     } else {
-      console.log("Pls Choose a Title and a Content")
+      this.toastr.warning('Pls Choose a Title and a Content for your note') //toast
     }
   }
 
@@ -63,7 +70,7 @@ export class EditComponent implements OnInit {
     let delUrl = 'http://localhost:3000/api/deleteNote/' + this.note.id;
     this.http.delete(delUrl, { headers: this.headers })
       .toPromise()
-      .then(() => null)
+      .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Ups!', 'Note couldnt be deleted. Sorry'))
       .catch(this.handleError);
     this.note.content = "";
     this.note.title = "";
@@ -75,6 +82,7 @@ export class EditComponent implements OnInit {
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
+    this.toastr.error('Something went wrong', 'Sorry')
     return Promise.reject(error.message || error);
   }
 }

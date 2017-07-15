@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router }            from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Note } from './notes';
 import { MainService } from './main.service';
@@ -15,7 +16,12 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     private mainService: MainService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+    this.toastr.info('Welcome back!');
+  }
 
   ngOnInit(): void {
     console.log("Overview ngOnInit")
