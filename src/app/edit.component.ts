@@ -51,7 +51,7 @@ export class EditComponent implements OnInit {
       this.http
         .post(this.url, body, { headers: this.headers })
         .toPromise()
-        .then(res => res.json().successfull ? this.toastr.success('Note saved') : this.toastr.error('Ups!', 'Something went wrong by saving your note. Sorry'))
+        .then(res => res.json().successfull ? this.toastr.success('Note saved') : this.toastr.error('Something went wrong by saving your note', 'Ups! Sorry'))
         .catch(this.handleError);
     } else {
       this.toastr.warning('Pls Choose a Title and a Content for your note') //toast
@@ -70,7 +70,7 @@ export class EditComponent implements OnInit {
     let delUrl = 'http://localhost:3000/api/deleteNote/' + this.note.id;
     this.http.delete(delUrl, { headers: this.headers })
       .toPromise()
-      .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Ups!', 'Note couldnt be deleted. Sorry'))
+      .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Note could not be deleted.', 'Ups! Sorry'))
       .catch(this.handleError);
     this.note.content = "";
     this.note.title = "";

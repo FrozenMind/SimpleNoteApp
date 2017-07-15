@@ -20,7 +20,7 @@ export class OverviewComponent implements OnInit {
     private toastr: ToastsManager,
     private vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.toastr.info('Welcome back!');
+    this.toastr.info('This is your dashboard', 'Welcome back!');
   }
 
   ngOnInit(): void {
