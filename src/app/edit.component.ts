@@ -20,6 +20,7 @@ export class EditComponent implements OnInit {
   url: string = 'http://localhost:3000/api/saveNote';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   note: Note;
+  contentPlaceholder: string = "Put your note content here, so you will never forget again. :)";
 
   constructor(
     private mainService: MainService,
@@ -56,12 +57,6 @@ export class EditComponent implements OnInit {
     } else {
       this.toastr.warning('Pls Choose a Title and a Content for your note') //toast
     }
-  }
-
-  //clear textarea
-  onClearClick() {
-    console.log("Clear clicked.");
-    this.note.content = "";
   }
 
   //tell server to delete the file

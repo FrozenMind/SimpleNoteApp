@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .note {
@@ -10,9 +10,11 @@
   float: left;
   height: 20%;
   width: 20%;
+  max-width: 200px;
+  max-height: 100px;
   margin: 1%;
   padding: 1%;
-  border: 6px outset #cd5700;
+  border: 5px outset #ff0000;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #efefc8;

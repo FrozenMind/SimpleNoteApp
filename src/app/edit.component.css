@@ -12,15 +12,12 @@
   margin: auto;
   resize: none;
   background-color: #cccccc;
+  border: inset 3px #fabc00;
 }
 
-label {
-  display: inline-block;
-  width: auto;
-}
-
-#title {
-  width: inherit;
+.title {
+  width: 100%;
   background-color: #cccccc;
   margin-bottom: 5px;
+  border: inset 3px #fabc00;
 }
