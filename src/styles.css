@@ -2,6 +2,7 @@ html,
 body{
   height: 100%;
   width: 100%;
+  margin: 0px;
   background-color: #000000;
   color: #cccccc;
   overflow: hidden;
@@ -31,4 +32,48 @@ button {
 button:hover {
   background: #d10026;
   text-decoration: none;
+}
+
+/* webkit scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+  margin-right: 5px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fabc00;
+  margin: 1px;
+  width: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e01919;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #ffea5e;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #fabc00;
+}
+::-webkit-scrollbar-track:active {
+  background: #e01919;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.header{
+  width: 100%;
+  height: auto;
+  padding: 1%;
 }
