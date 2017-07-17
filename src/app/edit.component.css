@@ -1,23 +1,26 @@
 .editArea{
-  width: 90%;
-  height: 75%;
-  margin: 2%;
+  width: 100%;
+  height: 80%;
+  padding: 2%;
   position: absolute;
   justify-content: center;
 }
 
+.title {
+  width: 90%;
+  background-color: #cccccc;
+  margin-bottom: 5px;
+  border: inset 3px #fabc00;
+  font-size: 120%;
+  font-weight: bold;
+}
+
 .editTextArea{
-  width: 100%;
+  width: 90%;
   height: 100%;
+  font-size: 120%;
   margin: auto;
   resize: none;
   background-color: #cccccc;
-  border: inset 3px #fabc00;
-}
-
-.title {
-  width: 100%;
-  background-color: #cccccc;
-  margin-bottom: 5px;
   border: inset 3px #fabc00;
 }
