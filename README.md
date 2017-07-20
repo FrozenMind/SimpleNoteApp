@@ -9,4 +9,6 @@ The backend is made with electron and the frontend with angular v4 (typescript).
 3. run with ```npm run electron```
 
 ## Versions
-will be added soon
+Download your version --> extract folder --> run SimpleNoteApp
+#### v0.0.2 Basic Application works finally :)
+Linux 64 bit: http://games-broduction.com/public/software/SimpleNoteApp/SimpleNoteApp_v002-linux-x64.tar
