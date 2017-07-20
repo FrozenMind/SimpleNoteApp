@@ -5,6 +5,14 @@ const {
   BrowserWindow
 } = require('electron')
 
+var express = require('express')
+var server = express()
+var cors = require('cors')
+var fs = require('fs')
+var bodyParser = require('body-parser')
+
+var notesPath = __dirname + "/../notes.json"
+
 //Keep a global reference of the window object, if you don't, the window will
 //be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -18,7 +26,9 @@ function createWindow() {
   })
 
   //load the index.html of the app.
-  win.loadURL(`file://${__dirname}/index.html`)
+  console.log(__dirname)
+  //  win.loadURL(`file://${__dirname}/../../dist/index.html`) //build path
+  win.loadURL(`file://${__dirname}/index.html`) //test path
 
   //Open the DevTools with next line (can be done always by pressing ctrl+alt+i)
   //win.webContents.openDevTools()
@@ -30,6 +40,12 @@ function createWindow() {
     //when you should delete the corresponding element.
     win = null
   })
+  //check if notes.json exist, otherwise create it
+  if (!fs.existsSync(notesPath)) {
+    fs.closeSync(fs.openSync(notesPath, 'a')) //a only creates file if it does not exist
+  }
+
+  console.log("electron app loaded")
 }
 
 //This method will be called when Electron has finished
@@ -51,14 +67,7 @@ app.on('activate', () => {
 })
 
 
-
 //all the http server stuff TODO new file pls
-var express = require('express')
-var server = express()
-var cors = require('cors')
-var fs = require('fs')
-var bodyParser = require('body-parser')
-
 var notes = [];
 
 server.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -100,7 +109,7 @@ server.post('/api/saveNote', (req, res) => {
   for (i = 0; i < notes.length; i++) {
     notes[i].id = i
   }
-  fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
+  fs.writeFile(notesPath, JSON.stringify(notes),
     function(err) {
       if (err) {
         res.send({
@@ -121,8 +130,9 @@ server.get('/api/getNotes/:id?', (req, res) => {
   var requiredId = req.params.id || -100 //-100 --> getAllNotes
   console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
   if (requiredId == -1) return //-1 is new note
-  var url = __dirname + "/../notes.json"
-  notes = JSON.parse(fs.readFileSync(url, 'utf8'))
+  var fileRes = fs.readFileSync(notesPath, 'utf8')
+  if (fileRes && fileRes != "") //if file has a content
+    notes = JSON.parse(fileRes)
   if (requiredId == -100) {
     res.send(JSON.stringify(notes))
   } else {
@@ -142,7 +152,7 @@ server.delete('/api/deleteNote/:id', function(req, res) {
     if (notes[i].id == requiredId)
       notes.splice(i, 1)
   }
-  fs.writeFile(__dirname + "/../notes.json", JSON.stringify(notes),
+  fs.writeFile(notesPath, JSON.stringify(notes),
     function(err) {
       if (err) {
         res.send({
