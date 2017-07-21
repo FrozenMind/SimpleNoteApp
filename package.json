@@ -30,6 +30,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
+    "jquery": "^3.2.1",
     "ng2-toastr": "^4.1.2",
     "rxjs": "^5.4.2",
     "toastr": "^2.1.2",
