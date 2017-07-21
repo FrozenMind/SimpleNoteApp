@@ -1,22 +1,15 @@
-.overviewMain{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: fixed;
-}
-
 .noteHolder{
-  width: 100%;
-  height:85%;
+  margin: 0px;
+  padding: 0px;
   overflow-x: hidden;
   overflow-y: scroll;
+  background: transparent;
 }
 
 .noteHolderUl{
-  width: 100%;
-  height: 100%;
   margin: 0px;
   padding: 0px;
+  background: transparent;
 }
 
 .note {
@@ -27,11 +20,11 @@
   max-width: 400px;
   max-height: 200px;
   margin: 1%;
-  padding: 8px;
-  border: 5px outset #ff0000;
+  border: 5px outset #602320;
   -webkit-border-radius: 10px;
+  padding: 5px;
   border-radius: 10px;
-  background: #efefc8;
+  background: #fbf3a2;
   cursor: pointer;
   overflow: hidden;
 }
@@ -41,9 +34,13 @@
 }
 
 .noteTitle {
+  width: 100%;
+  height: 20%;
+  text-align: center;
   font-weight: bold;
   color: #000000;
   font-size: 100%;
+  align-items: center;
 }
 
 .noteContent {

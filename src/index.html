@@ -10,8 +10,47 @@
 
   <link href="../node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
   <script src="../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
+  <script>
+    window.$ = window.jQuery = require('jquery')
+    const {BrowserWindow} = require('electron').remote
+    $(document).ready(function(){
+      console.log("document ready")
+      //create onclicklistener for close, min, max
+      $("#close").click(function(){
+        console.log("close requested")
+        BrowserWindow.getFocusedWindow().close()
+      })
+      $("#minimize").click(function(){
+        console.log("minimize requested")
+        BrowserWindow.getFocusedWindow().minimize()
+      })
+      $("#maximize").click(function(){
+        console.log("maximize requested")
+        var window = BrowserWindow.getFocusedWindow()
+        if(window.isMaximized()){
+            window.unmaximize()
+        }else{
+            window.maximize()
+        }
+      })
+    })
+  </script>
 </head>
 <body>
-  <app-root></app-root>
+  <div class="mainDiv">
+    <div class="header">
+      <h2 style="float:left; margin-left:10px;">Simple Note App - alpha</h2>
+    </div>
+    <div class="controls">
+      <button id="minimize">-</button>
+      <button id="maximize">+</button>
+      <button id="close">x</button>
+    </div>
+    <app-root class="content"></app-root>
+    <div class="footer">
+      <p>FrozenMind - Version 0.0.2 (alpha)</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>

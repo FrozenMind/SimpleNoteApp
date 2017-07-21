@@ -3,30 +3,27 @@ body{
   height: 100%;
   width: 100%;
   margin: 0px;
-  background-color: #000000;
   color: #cccccc;
+  background: #b82f4c;
   overflow: hidden;
 }
 
 button {
   background: #ffea5e;
-  background-image: -webkit-linear-gradient(top, #ffea5e, #2b2000);
-  background-image: -moz-linear-gradient(top, #ffea5e, #2b2000);
-  background-image: -ms-linear-gradient(top, #ffea5e, #2b2000);
-  background-image: -o-linear-gradient(top, #ffea5e, #2b2000);
-  background-image: linear-gradient(to bottom, #ffea5e, #2b2000);
+  background-image: -webkit-linear-gradient(top, #e0301e, #602320);
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 10px;
-  text-shadow: 5px 2px 3px #ff0000;
-  font-family: Arial;
-  color: #fabc00;
+  text-shadow: 5px 2px 3px #000000;
+  color: #eb8c00;
   font-size: 20px;
+  font-weight: bolder;
   padding: 10px 20px 10px 20px;
   border: solid #000000 0px;
   text-decoration: none;
   margin: 1%;
   cursor: pointer;
+  display: inline-block;
 }
 
 button:hover {
@@ -45,35 +42,73 @@ button:hover {
   height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #fabc00;
+  background: #dc6900;
   margin: 1px;
   width: 10px;
   border: 1px solid #ffffff;
   border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e01919;
+  background: #a32020;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #000000;
+  background: #602320;
 }
 ::-webkit-scrollbar-track {
-  background: #ffea5e;
+  background: #eb8c00;
   border: 1px solid #ffffff;
   border-radius: 50px;
 }
 ::-webkit-scrollbar-track:hover {
-  background: #fabc00;
+  background: #e0301e;
 }
 ::-webkit-scrollbar-track:active {
-  background: #e01919;
+  background: #a32020;
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
 
-.header{
+/* gridline with content */
+.mainDiv {
   width: 100%;
-  height: auto;
-  padding: 1%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr 10fr 1fr;
+  grid-template-areas: "header controls" "navigation navigation" "content content" "footer footer";
+  background: #eb8c00;
+}
+
+.header{
+  grid-area: header;
+  background: #602320;
+  font-weight: bold;
+  text-align: center;
+}
+
+.controls{
+  grid-area: controls;
+  min-width: 200px;
+  background: #602320;
+  font-weight: bold;
+  text-align: right;
+}
+
+.navigation{
+  grid-area: navigation;
+  background: #eb8c00;
+}
+
+.content{
+  grid-area: content;
+  width: 100%;
+  background: #eb8c00;
+}
+
+.footer {
+  grid-area: footer;
+  background: #602320;
+  font-weight: bold;
+  text-align:  center;
 }

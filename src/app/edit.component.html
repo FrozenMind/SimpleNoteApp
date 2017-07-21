@@ -1,7 +1,7 @@
-<div class="header">
+<div class="navigation">
+  <button (click)="onDashboardClick()"><</button>
   <button (click)="onSaveClick()">Save</button>
   <button (click)="onDeleteClick()">Delete</button>
-  <button (click)="onDashboardClick()">Goto Dashboard</button>
 </div>
 <div class="editArea">
     <input type="text" class="title" [(ngModel)]="note.title" placeholder="What's your note about?" />

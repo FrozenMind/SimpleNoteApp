@@ -22,7 +22,10 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    frame: false //remove frames, menu bar, etc.
+    frame: false, //remove frames, menu bar, etc.
+    webPreferences: {
+      experimentalFeatures: true, //enable to use display grid
+    }
   })
 
   //load the index.html of the app.

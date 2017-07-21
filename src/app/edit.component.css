@@ -1,26 +1,26 @@
 .editArea{
-  width: 100%;
-  height: 80%;
-  padding: 2%;
-  position: absolute;
-  justify-content: center;
+  margin: 10px;
+  width: 90%;
+  height: 60%;
 }
 
 .title {
-  width: 90%;
-  background-color: #cccccc;
+  width: 100%;
+  background-color: #f7d199;
   margin-bottom: 5px;
-  border: inset 3px #fabc00;
+  border: inset 3px #a32020;
+  color: #602320;
   font-size: 120%;
   font-weight: bold;
 }
 
 .editTextArea{
-  width: 90%;
+  width: 100%;
   height: 100%;
   font-size: 120%;
   margin: auto;
   resize: none;
-  background-color: #cccccc;
-  border: inset 3px #fabc00;
+  color: #602320;
+  background-color: #f7d199;
+  border: inset 3px #a32020;
 }
