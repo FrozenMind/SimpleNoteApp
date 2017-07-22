@@ -13,7 +13,7 @@ Download your version --> extract folder --> run SimpleNoteApp
 #### v0.0.4
 Linux 64 bit: http://games-broduction.com/public/software/SimpleNoteApp/SimpleNoteApp_v004-linux-x64.tar
 
-Windows 64 bit: http://games-broduction.com/public/software/SimpleNoteApp/SimpleNoteApp_v004-win32-x64.tar
+Windows 64 bit: http://games-broduction.com/public/software/SimpleNoteApp/SimpleNoteApp_v004-win32-x64.zip
 
 #### v0.0.3 crossplattform alpha
 Linux 64 bit: http://games-broduction.com/public/software/SimpleNoteApp/SimpleNoteApp_v003-linux-x64.tar
