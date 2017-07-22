@@ -31,10 +31,8 @@
 .note {
   position: relative;
   float: left;
-  height: 20%;
-  width: 20%;
-  max-width: 400px;
-  max-height: 200px;
+  height: 100px;
+  width: 200px;
   margin: 1%;
   border: 5px outset #602320;
   -webkit-border-radius: 10px;

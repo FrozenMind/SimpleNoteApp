@@ -77,14 +77,13 @@ export class EditComponent implements OnInit {
         .toPromise()
         .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Note could not be deleted.', 'Ups! Sorry'))
         .catch(this.handleError);
-      this.note.content = "";
-      this.note.title = "";
-      this.saved = true;
+      //navigate to home view
+      this.router.navigate(['/overview']);
     }
   }
 
   onDashboardClick() {
-    this.router.navigate(['/overview'])
+    this.router.navigate(['/overview']);
     if(!this.saved){
       //TODO: display message are you sure, cause you havent saved?
     }
