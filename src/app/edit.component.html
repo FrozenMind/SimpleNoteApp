@@ -1,9 +1,11 @@
-<div class="navigation">
-  <button (click)="onDashboardClick()"><</button>
-  <button (click)="onSaveClick()">Save</button>
-  <button (click)="onDeleteClick()">Delete</button>
-</div>
-<div class="editArea">
-    <input type="text" class="title" [(ngModel)]="note.title" placeholder="What's your note about?" />
-    <textarea class="editTextArea" [(ngModel)]="note.content" placeholder="{{contentPlaceholder}}"></textarea>
+<div class="editmain">
+  <div class="editnavigation">
+    <button (click)="onDashboardClick()"><</button>
+    <button (click)="onSaveClick()">Save</button>
+    <button (click)="onDeleteClick()">Delete</button>
+  </div>
+  <div class="editcontent">
+    <input type="text" class="title" [(ngModel)]="note.title" placeholder="{{titlePlaceholder}}" (change)="contentChanged()" />
+    <textarea class="editTextArea" [(ngModel)]="note.content" placeholder="{{contentPlaceholder}}" (change)="contentChanged()" ></textarea>
+  </div>
 </div>

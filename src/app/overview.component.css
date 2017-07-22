@@ -1,9 +1,25 @@
-.noteHolder{
-  margin: 0px;
-  padding: 0px;
-  overflow-x: hidden;
+.ovmain{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 7fr;
+  grid-template-areas:
+    "ovnavigation"
+    "ovcontent";
+  background: #eb8c00;
+}
+
+.ovnavigation{
+  grid-area: ovnavigation;
+  background: #eb8c00;
+}
+
+.ovcontent{
+  grid-area: ovcontent;
+  width: 100%;
+  background: #eb8c00;
   overflow-y: scroll;
-  background: transparent;
 }
 
 .noteHolderUl{

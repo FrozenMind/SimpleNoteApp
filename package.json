@@ -1,6 +1,6 @@
 {
   "name": "simple-note-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "src/electron/electron.js",
   "scripts": {

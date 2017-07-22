@@ -75,8 +75,11 @@ button:hover {
   height: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr 1fr 10fr 1fr;
-  grid-template-areas: "header controls" "navigation navigation" "content content" "footer footer";
+  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-areas:
+    "header controls"
+    "content content"
+    "footer footer";
   background: #eb8c00;
 }
 
@@ -93,11 +96,6 @@ button:hover {
   background: #602320;
   font-weight: bold;
   text-align: right;
-}
-
-.navigation{
-  grid-area: navigation;
-  background: #eb8c00;
 }
 
 .content{

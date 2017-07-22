@@ -1,15 +1,17 @@
-<div class="navigation">
-  <button (click)="newNote()">New Note</button>
-</div>
-<div class="content">
-  <ul class="noteHolderUl">
-    <li class="note" *ngFor="let note of notes" (click)="gotoEdit(note)">
-      <div class="noteTitle">
-        <p>{{note.title}}</p>
-      </div>
-      <div class="noteContent">
-        <p>{{note.content}}</p>
-      </div>
-    </li>
-  </ul>
+<div class="ovmain">
+  <div class="ovnavigation">
+    <button (click)="newNote()">New Note</button>
+  </div>
+  <div class="ovcontent">
+    <ul class="noteHolderUl">
+      <li class="note" *ngFor="let note of notes" (click)="gotoEdit(note)">
+        <div class="noteTitle">
+          <p>{{note.title}}</p>
+        </div>
+        <div class="noteContent">
+          <p>{{note.content}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

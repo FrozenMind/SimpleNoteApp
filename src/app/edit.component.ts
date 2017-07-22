@@ -21,6 +21,7 @@ export class EditComponent implements OnInit {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   note: Note;
   contentPlaceholder: string = "Put your note content here, so you will never forget again. :)";
+  titlePlaceholder: string = "What's your note about?";
 
   constructor(
     private mainService: MainService,
@@ -33,6 +34,7 @@ export class EditComponent implements OnInit {
     this.note = new Note();
     this.note.title = "";
     this.note.content = "";
+    this.saved = true;
   }
 
   //on init get Param
@@ -40,6 +42,12 @@ export class EditComponent implements OnInit {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.mainService.getNote(+params.get('id')))
       .subscribe(n => this.note = n);
+  }
+
+  //content changed, so change need to be false
+  contentChanged(){
+    console.log("content changed")
+    this.saved = false;
   }
 
   //tell server to save the file
@@ -54,6 +62,7 @@ export class EditComponent implements OnInit {
         .toPromise()
         .then(res => res.json().successfull ? this.toastr.success('Note saved') : this.toastr.error('Something went wrong by saving your note', 'Ups! Sorry'))
         .catch(this.handleError);
+      this.saved = true;
     } else {
       this.toastr.warning('Pls Choose a Title and a Content for your note') //toast
     }
@@ -61,18 +70,24 @@ export class EditComponent implements OnInit {
 
   //tell server to delete the file
   onDeleteClick() {
-    console.log("Deleted clicked.");
-    let delUrl = 'http://localhost:3000/api/deleteNote/' + this.note.id;
-    this.http.delete(delUrl, { headers: this.headers })
-      .toPromise()
-      .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Note could not be deleted.', 'Ups! Sorry'))
-      .catch(this.handleError);
-    this.note.content = "";
-    this.note.title = "";
+    if(true){ //TODO: display are you sure message
+      console.log("Deleted clicked.");
+      let delUrl = 'http://localhost:3000/api/deleteNote/' + this.note.id;
+      this.http.delete(delUrl, { headers: this.headers })
+        .toPromise()
+        .then(res => res.json().successfull ? this.toastr.success('Note deleted') : this.toastr.error('Note could not be deleted.', 'Ups! Sorry'))
+        .catch(this.handleError);
+      this.note.content = "";
+      this.note.title = "";
+      this.saved = true;
+    }
   }
 
   onDashboardClick() {
     this.router.navigate(['/overview'])
+    if(!this.saved){
+      //TODO: display message are you sure, cause you havent saved?
+    }
   }
 
   private handleError(error: any): Promise<any> {
