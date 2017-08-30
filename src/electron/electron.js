@@ -11,7 +11,7 @@ var cors = require('cors')
 var fs = require('fs')
 var bodyParser = require('body-parser')
 
-var notesPath = __dirname + "/../notes.json"
+const notesPath = __dirname + "/../notes.json" //njson file location
 
 //Keep a global reference of the window object, if you don't, the window will
 //be closed automatically when the JavaScript object is garbage collected.
@@ -79,7 +79,8 @@ server.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 
 server.use(cors());
-server.get('/api/users', function(req, res) {
+//http request definitions
+server.get('/api/users', function(req, res) { //test stuff TODO check if it can deleted safe
   console.log("worked")
   res.json({
     message: 'hooray! welcome to my app!'
@@ -91,7 +92,6 @@ server.post('/api/saveNote', (req, res) => {
   console.log(req.body)
   var d = new Date()
   var fullDate = d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear() + "_" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
-  //TODO: check if file exists, than update, otherwise create new
   var newNote
   if (req.body.id == -1) { //-1 = new note
     newNote = {
@@ -101,6 +101,7 @@ server.post('/api/saveNote', (req, res) => {
     }
     notes.push(newNote)
   } else {
+    //TODO what happens if id doesnt exist?
     for (i = 0; i < notes.length; i++) {
       if (notes[i].id == req.body.id) {
         notes[i].title = req.body.title
@@ -112,6 +113,7 @@ server.post('/api/saveNote', (req, res) => {
   for (i = 0; i < notes.length; i++) {
     notes[i].id = i
   }
+  //write notes to file
   fs.writeFile(notesPath, JSON.stringify(notes),
     function(err) {
       if (err) {
@@ -127,18 +129,21 @@ server.post('/api/saveNote', (req, res) => {
     })
 })
 
-//http get all notes request
+//http get (all) note(s) request
 server.get('/api/getNotes/:id?', (req, res) => {
   console.log("/api/getNotes")
   var requiredId = req.params.id || -100 //-100 --> getAllNotes
   console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
-  if (requiredId == -1) return //-1 is new note
+  if (requiredId < 0) return //id shouldnt be less than 0
   var fileRes = fs.readFileSync(notesPath, 'utf8')
-  if (fileRes && fileRes != "") //if file has a content
+  if (fileRes && fileRes != "") //if file has a content parse it
     notes = JSON.parse(fileRes)
+  else //else return err TODO: return error
+    return
   if (requiredId == -100) {
     res.send(JSON.stringify(notes))
   } else {
+    //search for the note and return it to the client
     for (i = 0; i < notes.length; i++) {
       if (notes[i].id == requiredId) {
         res.send(JSON.stringify(notes[i]))
@@ -151,10 +156,13 @@ server.get('/api/getNotes/:id?', (req, res) => {
 //delete one note
 server.delete('/api/deleteNote/:id', function(req, res) {
   var requiredId = req.params.id
+  //search for id and delete it
+  //TODO if not found reorder the ids because something is wrong on the client side
   for (i = notes.length - 1; i >= 0; i--) {
     if (notes[i].id == requiredId)
       notes.splice(i, 1)
   }
+  //save changes to file and send client response if it worked
   fs.writeFile(notesPath, JSON.stringify(notes),
     function(err) {
       if (err) {
@@ -171,7 +179,4 @@ server.delete('/api/deleteNote/:id', function(req, res) {
 })
 
 //start HTTP Server
-//http.listen(3000, function() {
-//  console.log('HTTP Server listening on Port 52001');
-//});
 server.listen(3000)

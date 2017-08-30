@@ -1,3 +1,4 @@
 back --> if not saved, are you sure?
 delete --> are you sure?
-move notification to bottom right
+global error handling with status codes in the responses
+customize notifications

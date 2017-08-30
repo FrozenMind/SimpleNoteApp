@@ -16,10 +16,10 @@ import { Note } from './notes';
 })
 
 export class EditComponent implements OnInit {
-  saved = false;  //used to follow if theres an unsaved change
+  saved = false;  //used to follow if there are unsaved changes
   url: string = 'http://localhost:3000/api/saveNote';
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  note: Note;
+  note: Note; //current selected note
   contentPlaceholder: string = "Put your note content here, so you will never forget again. :)";
   titlePlaceholder: string = "What's your note about?";
 
