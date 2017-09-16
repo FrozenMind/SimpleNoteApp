@@ -3,6 +3,8 @@
 It's a cross plattform desktop application to save your notes.
 The backend is made with electron and the frontend with angular v4 (typescript).
 
+For a more detailed description, changelogs, screenshot, etc. check: http://games-broduction.com/simple-note-app/
+
 ## Build
 1. Clone repository
 2. run```npm install``` to install all required node modules
