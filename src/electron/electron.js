@@ -134,7 +134,7 @@ server.get('/api/getNotes/:id?', (req, res) => {
   console.log("/api/getNotes")
   var requiredId = req.params.id || -100 //-100 --> getAllNotes
   console.log(requiredId == -1 ? "New Note" : "ID " + requiredId + " requested")
-  if (requiredId < 0) return //id shouldnt be less than 0
+  if (requiredId == -1) return //-1 = new note, no not need to query TODO: tell client error code
   var fileRes = fs.readFileSync(notesPath, 'utf8')
   if (fileRes && fileRes != "") //if file has a content parse it
     notes = JSON.parse(fileRes)
