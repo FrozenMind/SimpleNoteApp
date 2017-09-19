@@ -8,7 +8,7 @@ import { MainService } from './main.service';
 @Component({
   selector: 'overview-notes',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  styleUrls: ['./overview.component.css', './activetheme/theme.overview.component.css', './activetheme/theme.styles.css']
 })
 export class OverviewComponent implements OnInit {
   title: string = "Overview of your notes";
@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
     private router: Router,
     private toastr: ToastsManager,
     private vcr: ViewContainerRef) {
-    this.toastr.setRootViewContainerRef(vcr);    
+    this.toastr.setRootViewContainerRef(vcr);
     //this.toastr.info('This is your dashboard', 'Welcome back!');
   }
 

@@ -1,0 +1,39 @@
+.ovmain{
+  background: ;
+}
+
+.ovnavigation{
+  background: ;
+}
+
+.ovcontent{
+  background: ;
+}
+
+.noteHolderUl{
+  background: ;
+}
+
+.note {
+  border: ;
+  border-radius: ;
+  background: ;
+}
+
+.note:hover{
+
+}
+
+.noteTitle {
+  text-align: center;
+  font-weight: bold;
+  color: ;
+  font-size: 100%;
+  align-items: center;
+}
+
+.noteContent {
+  color: ;
+  font-size: 80%;
+  text-align: justify;
+}

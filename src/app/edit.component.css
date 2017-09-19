@@ -7,37 +7,24 @@
   grid-template-areas:
     "editnavigation"
     "editcontent";
-  background: #eb8c00;
 }
 
 .editnavigation{
   grid-area: editnavigation;
-  background: #eb8c00;
 }
 
 .editcontent{
   grid-area: editcontent;
-  background: #eb8c00;
-  text-align: center;
 }
 
 .title {
   width: 90%;
-  background-color: #f7d199;
   margin-bottom: 5px;
-  border: inset 3px #a32020;
-  color: #602320;
-  font-size: 120%;
-  font-weight: bold;
 }
 
 .editTextArea{
   width: 90%;
   height: 80%;
-  font-size: 120%;
   margin: auto;
   resize: none;
-  color: #602320;
-  background-color: #f7d199;
-  border: inset 3px #a32020;
 }

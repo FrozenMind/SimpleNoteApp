@@ -12,7 +12,7 @@ import { Note } from './notes';
 @Component({
   selector: 'edit-note',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css', './activetheme/theme.edit.component.css', './activetheme/theme.styles.css']
 })
 
 export class EditComponent implements OnInit {

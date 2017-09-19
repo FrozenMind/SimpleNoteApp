@@ -1,0 +1,39 @@
+.ovmain{
+  background: #eb8c00;
+}
+
+.ovnavigation{
+  background: #eb8c00;
+}
+
+.ovcontent{
+  background: #eb8c00;
+}
+
+.noteHolderUl{
+  background: transparent;
+}
+
+.note {
+  border: 5px outset #602320;
+  border-radius: 10px;
+  background: #fbf3a2;
+}
+
+.note:hover{
+  transform: scale(1.1);
+}
+
+.noteTitle {
+  text-align: center;
+  font-weight: bold;
+  color: #000000;
+  font-size: 100%;
+  align-items: center;
+}
+
+.noteContent {
+  color: #696969;
+  font-size: 80%;
+  text-align: justify;
+}

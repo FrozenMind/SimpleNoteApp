@@ -1,0 +1,89 @@
+html,
+body{
+  color: #cccccc;
+  background: #b82f4c;
+}
+
+button {
+  background: #ffea5e;
+  background-image: -webkit-linear-gradient(top, #e0301e, #602320);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: 5px 2px 3px #000000;
+  color: #eb8c00;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 10px 20px 10px 20px;
+  border: solid #000000 0px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #d10026;
+}
+
+/* webkit scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+  margin-right: 5px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #dc6900;
+  margin: 1px;
+  width: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a32020;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #602320;
+}
+::-webkit-scrollbar-track {
+  background: #eb8c00;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #e0301e;
+}
+::-webkit-scrollbar-track:active {
+  background: #a32020;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* gridline with content */
+.mainDiv {
+  background: #eb8c00;
+}
+
+.header{
+  background: #602320;
+  font-weight: bold;
+  text-align: center;
+}
+
+.controls{
+  background: #602320;
+  font-weight: bold;
+  text-align: right;
+}
+
+.content{
+  background: #eb8c00;
+}
+
+.footer {
+  background: #602320;
+  font-weight: bold;
+  text-align:  center;
+}

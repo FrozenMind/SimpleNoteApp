@@ -1,0 +1,27 @@
+.editmain{
+  background: #eb8c00;
+}
+
+.editnavigation{
+  background: #eb8c00;
+}
+
+.editcontent{
+  background: #eb8c00;
+  text-align: center;
+}
+
+.title {
+  background-color: #f7d199;
+  border: inset 3px #a32020;
+  color: #602320;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.editTextArea{
+  font-size: 120%;
+  color: #602320;
+  background-color: #f7d199;
+  border: inset 3px #a32020;
+}

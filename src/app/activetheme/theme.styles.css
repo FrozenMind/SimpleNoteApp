@@ -1,0 +1,82 @@
+html,
+body{
+  color: #fff;
+  background: #000;
+}
+
+button {
+  background: #ad0000;
+  box-shadow: 0 0 5px 1px #000;
+  color: #000;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid black;
+}
+
+button:hover {
+  box-shadow: 0 0 8px 2px #888;
+}
+
+/* webkit scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+  margin-right: 5px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  margin: 1px;
+  width: 10px;
+  border: 1px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #888;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  border: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #333;
+}
+::-webkit-scrollbar-track:active {
+  background: #ad0000;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* gridline with content */
+.mainDiv {
+  background: #fff;
+}
+
+.header{
+  background: #000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.controls{
+  background: #000;
+  font-weight: bold;
+  text-align: right;
+}
+
+.content{
+  background: #fff;
+}
+
+.footer {
+  background: #000;
+  font-weight: bold;
+  text-align:  center;
+}
